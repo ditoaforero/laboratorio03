@@ -30,6 +30,7 @@ import org.primefaces.event.DragDropEvent;
  * Managed Bean encargado del carrito de compras del cliente
  * 
  */
+
 public class CarritoBean implements Serializable
 {
 
@@ -41,7 +42,7 @@ public class CarritoBean implements Serializable
      * Relación con la interfaz que provee los servicios necesarios del carrito de compras
      */
     @EJB
-    private IServicioCarritoMockLocal carrito;
+    private final IServicioCarritoMockLocal carrito;
 
     /**
      * Relación con la interfaz que provee los servicios necesarios del catálogo.

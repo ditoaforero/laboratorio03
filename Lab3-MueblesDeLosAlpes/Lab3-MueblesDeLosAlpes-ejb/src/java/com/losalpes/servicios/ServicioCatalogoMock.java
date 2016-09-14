@@ -6,10 +6,10 @@
 package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import com.losalpes.excepciones.OperacionInvalidaException;
 
 /**
  *
@@ -38,9 +38,7 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockLocal, IServic
     public void agregarItem(Mueble mueble)
     {
         
-    }
-    
-    
+    }   
 
     @Override
     public void eliminarMueble(long id)  {
@@ -49,7 +47,7 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockLocal, IServic
 
     @Override
     public List<Mueble> darMuebles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return(ArrayList<Mueble>) persistencia.findAll(Mueble.class);      
     }
 
     @Override
