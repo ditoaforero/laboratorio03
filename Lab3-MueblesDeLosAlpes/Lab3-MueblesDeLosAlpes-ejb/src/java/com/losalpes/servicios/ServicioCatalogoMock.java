@@ -32,37 +32,12 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockLocal, IServic
     public void agregarMueble(Mueble mueble) {
         boolean found = false;
         Mueble item;
-        
-       
-        persistencia.create(mueble);
-      
     }
     
     
     public void agregarItem(Mueble mueble)
     {
-        boolean found = false;
-        Mueble item;
-        for(int i= 0, max= inventario.size(); i < max; i++)
-        {
-            item = (Mueble)inventario.get(i);
-            if (item.getReferencia() == mueble.getReferencia())
-            {
-                item.incrementarCantidad();
-                found = true;
-                break;
-            }
-        }
-
-        // Si el item no se encuentra se agrega al inventario
-        if (!found)
-        {
-            inventario.add(mueble);
-            mueble.incrementarCantidad();
-        }
-
-        // Actualiza el inventario
-        recalcularInventarioTotal();
+        
     }
     
     
