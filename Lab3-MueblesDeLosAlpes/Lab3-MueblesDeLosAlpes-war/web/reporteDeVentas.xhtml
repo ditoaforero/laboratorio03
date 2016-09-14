@@ -13,9 +13,15 @@
     <ui:param name="titulo" value="Reporte de ventas" />
     <ui:define name="body">
         <h:form>
-            <h:outputText id="linkHeader"
-                          value="Administración de usuarios" style="color:white"/>
-        </h:form>    
+            <h:outputText id="linkHeader" value="Administración de usuarios" style="color:white"/>
+        </h:form>   
+        <h:panelGroup>
+            <h:form>
+                <div align="right" style="padding-right: 10px">
+                    <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
+                </div>
+            </h:form>
+        </h:panelGroup>
 
 
    </ui:define>
