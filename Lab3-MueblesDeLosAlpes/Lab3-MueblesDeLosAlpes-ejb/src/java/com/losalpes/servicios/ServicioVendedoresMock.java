@@ -23,7 +23,9 @@ import javax.ejb.Stateless;
  * 
  */
 @Stateless
-public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IServicioVendedoresMockLocal {
+public class ServicioVendedoresMock implements IServicioVendedoresMockLocal {
+//Original    
+//public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IServicioVendedoresMockLocal {
 
     //-----------------------------------------------------------
     // Atributos
