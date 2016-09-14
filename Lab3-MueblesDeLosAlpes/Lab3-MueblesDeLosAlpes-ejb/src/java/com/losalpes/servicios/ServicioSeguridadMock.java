@@ -15,6 +15,7 @@ package com.losalpes.servicios;
 import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.AutenticacionException;
 import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -76,5 +77,10 @@ public class ServicioSeguridadMock implements IServicioSeguridadMockLocal
         {
             throw new AutenticacionException("El nombre de usuario proporcionado no pertenece a ninguna cuenta.");
         }
+    }
+    
+    @Remove
+    public void remove(){
+        persistencia = null;
     }
 }

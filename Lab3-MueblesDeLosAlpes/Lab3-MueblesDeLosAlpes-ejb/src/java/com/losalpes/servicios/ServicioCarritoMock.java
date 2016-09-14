@@ -18,6 +18,7 @@ import com.losalpes.entities.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -220,6 +221,11 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
     public void limpiarLista()
     {
         inventario.clear();
+    }
+    
+    @Remove
+    public void remove(){
+        persistencia = null;
     }
     
 }
