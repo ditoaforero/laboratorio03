@@ -16,13 +16,32 @@
             <h:outputText id="linkHeader" value="Administración de usuarios" style="color:white"/>
         </h:form>   
         <h:panelGroup>
+
+            <!--            private Date fechaVenta;
+            private Mueble producto;
+            private int cantidad;
+            private String ciudad;
+            private Usuario comprador;-->
+
+
+
             <h:form>
                 <div align="right" style="padding-right: 10px">
                     <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
                 </div>
+                <p:dataGrid id="availableMuebles" var="venta" value="#{reporteBean.ventas}" columns="3">
+                    <p:panel id="pnl" header="#{venta.producto.nombre}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputLabel value="#{venta.cantidad}"  />
+                            <h:outputLabel value="#{venta.ciudad}"  />
+                            <h:outputLabel value="#{venta.fechaVenta}"  />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
             </h:form>
         </h:panelGroup>
 
 
-   </ui:define>
+    </ui:define>
 </ui:composition>

@@ -113,6 +113,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 venta.setProducto(muebles.get(e));
                 venta.setFechaVenta(new Date(r.nextInt()));
                 venta.setCiudad("Bogotá");
+                registrosVentas.add(venta);
             }
         }
     }
@@ -304,6 +305,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         } 
         else if (c.equals(RegistroVenta.class))
         {
+            System.out.println("Llego a registro ventas de serviciopersistenciamock");
+            System.out.println("Registro de ventas:"+registrosVentas);
             return registrosVentas;
         } 
         else
