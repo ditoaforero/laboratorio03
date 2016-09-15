@@ -139,7 +139,11 @@
                         <h:outputText value="#{file.tipo}" />
                     </p:column>
                     
-                     <p:column headerText="Eliminar">
+                    <p:column headerText="Cantidad">
+                        <h:outputText value="#{file.cantidad}" />
+                    </p:column>
+                                  
+                    <p:column headerText="Eliminar">
                          <h:commandLink actionListener="#{catalogoBean.eliminarMueble}"
                                              value="Eliminar" >
                              <f:param name="muebleId" value="#{file.referencia}" />
