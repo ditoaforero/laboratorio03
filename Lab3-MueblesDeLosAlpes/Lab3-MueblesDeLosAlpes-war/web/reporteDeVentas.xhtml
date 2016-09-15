@@ -40,7 +40,17 @@
                     <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
                 </p:dataGrid>
             </h:form>
+            
+            
+               
         </h:panelGroup>
+        
+        <h:outputText value=" - Fecha de venta mayor:" />
+        <h:outputText value="#{reporteBean.fechaMayor}" />
+        <h:outputText value=" - Rango inicial del listado:" />
+        <h:outputText value="#{reporteBean.fechaIni}" />
+        <h:outputText value=" - Rango final del listado:" />
+        <h:outputText value="#{reporteBean.fechaFin}" />
 
 
     </ui:define>
