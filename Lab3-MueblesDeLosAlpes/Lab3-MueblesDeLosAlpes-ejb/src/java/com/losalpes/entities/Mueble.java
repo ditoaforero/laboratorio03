@@ -93,6 +93,8 @@ public class Mueble
         this.imagen=imagen;
         this.precio=precio;
     }
+    
+    
 
     //-----------------------------------------------------------
     // Getters y setters

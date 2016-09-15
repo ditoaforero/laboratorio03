@@ -14,6 +14,7 @@ package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
+import com.losalpes.entities.TipoMueble;
 import com.losalpes.entities.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -158,8 +159,18 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
         // Si el item no se encuentra se agrega al inventario
         if (!found)
         {
-            inventario.add(mueble);
-            mueble.incrementarCantidad();
+            Mueble muebleIngresar = new Mueble(
+                    mueble.getReferencia(),
+                    mueble.getNombre(), 
+                    mueble.getDescripcion(), 
+                    mueble.getTipo(), 
+                    1, 
+                    mueble.getImagen(),
+                    mueble.getPrecio());
+
+            inventario.add(muebleIngresar);
+           // mueble.incrementarCantidad();
+           mueble.reducirCantidad();
         }
 
         // Actualiza el inventario
@@ -190,7 +201,7 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
 
         // Remueve el item si la cantidad es menor o igual a cero
         if (removerCero && foundItem != null &&
-                foundItem.getCantidad() <= 0) {
+            foundItem.getCantidad() <= 0) {
             inventario.remove(foundItem);
         }
 
