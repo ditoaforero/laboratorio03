@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import org.primefaces.model.TreeNode;
+import org.primefaces.model.chart.PieChartModel;
 
 /**
  *
@@ -33,6 +35,39 @@ public class ReporteBean {
     private Date fechaIni;
     private Date fechaFin;
     private int total;
+    
+    private PieChartModel pieModel1;
+
+    public PieChartModel getPieModel1() {
+        return pieModel1;
+    }
+
+    public void setPieModel1(PieChartModel pieModel1) {
+        this.pieModel1 = pieModel1;
+    }
+    
+     @PostConstruct
+    public void init() {
+        createPieModel();
+    }
+    
+    
+    
+    private void createPieModel() {
+        
+        List<RegistroVenta> ultimoListado = new ArrayList();
+        ultimoListado = getUltimo();
+        
+        pieModel1 = new PieChartModel();
+        
+        for (int i = 0; i < ultimoListado.size(); i++) {
+            pieModel1.set(ultimoListado.get(i).getProducto().getNombre(), ultimoListado.get(i).getCantidad());
+        }
+         
+         
+        pieModel1.setTitle("La tortica");
+        pieModel1.setLegendPosition("w");
+    }
     
 
     /**

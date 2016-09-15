@@ -17,14 +17,6 @@
         </h:form>   
         <h:panelGroup>
 
-            <!--            private Date fechaVenta;
-            private Mueble producto;
-            private int cantidad;
-            private String ciudad;
-            private Usuario comprador;-->
-
-
-
             <h:form>
                 <div align="right" style="padding-right: 10px">
                     <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
@@ -64,6 +56,8 @@
         <h:outputText value=" - Total de productos vendidos:" />
         <h:outputText value="#{reporteBean.total}" />
         <br></br>
+        
+        <p:chart type="pie" model="#{reporteBean.pieModel1}" style="width:400px;height:300px" />
 
 
     </ui:define>
