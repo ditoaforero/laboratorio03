@@ -29,10 +29,40 @@ public class ReporteBean {
 
     private List<RegistroVenta> ventasUltimoMes;
 
+    private Date fechaMayor;
+    private Date fechaIni;
+    private Date fechaFin;
+    private int total;
+    
+
     /**
      * Creates a new instance of ReporteDeVentas
      */
     public ReporteBean() {
+    }
+
+    public Date getFechaMayor() {
+        return obtenerFechaMayor();
+    }
+
+    public void setFechaMayor(Date fechaMayor) {
+        this.fechaMayor = fechaMayor;
+    }
+
+    public Date getFechaIni() {
+        return obtenerInicioMes(obtenerFechaMayor());
+    }
+
+    public void setFechaIni(Date fechaIni) {
+        this.fechaIni = fechaIni;
+    }
+
+    public Date getFechaFin() {
+        return obtenerFinMes(obtenerFechaMayor());
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     /**
@@ -46,18 +76,28 @@ public class ReporteBean {
 
         return ventas.darVentas();
     }
+    
+    public int getTotal(){
+
+        List<RegistroVenta> ultimoListado = new ArrayList();
+        ultimoListado = getUltimo();
+        for (int i = 0; i < ultimoListado.size(); i++) {
+            total += ultimoListado.get(i).getCantidad();
+        }
+        return total;
+    }
 
     public List<RegistroVenta> getUltimo() {
         ventasUltimoMes = new ArrayList();
-        Date fechaMayor = obtenerFechaMayor();
-        System.out.println("Fecha mayor:"+fechaMayor);
-        Date fechaIni = obtenerInicioMes(fechaMayor);
-        System.out.println("Fehca ini"+fechaIni);
-        Date fechaFin = obtenerFinMes(fechaMayor);
-        System.out.println("Fecha fin:"+fechaFin);
+        fechaMayor = obtenerFechaMayor();
+        System.out.println("Fecha mayor:" + fechaMayor);
+        fechaIni = obtenerInicioMes(fechaMayor);
+        System.out.println("Fehca ini" + fechaIni);
+        fechaFin = obtenerFinMes(fechaMayor);
+        System.out.println("Fecha fin:" + fechaFin);
 
         for (int i = 0; i < ventas.darVentas().size(); i++) {
-            if(ventas.darVentas().get(i).getFechaVenta().after(fechaIni) && ventas.darVentas().get(i).getFechaVenta().before(fechaFin)){
+            if (ventas.darVentas().get(i).getFechaVenta().after(fechaIni) && ventas.darVentas().get(i).getFechaVenta().before(fechaFin)) {
                 ventasUltimoMes.add(ventas.darVentas().get(i));
             }
         }
@@ -93,7 +133,7 @@ public class ReporteBean {
         Calendar fechaRetorno = Calendar.getInstance();
         fechaAuxiliar.setTime(fecha);
         fechaRetorno.set(fechaAuxiliar.get(Calendar.YEAR), fechaAuxiliar.get(Calendar.MONTH), fechaAuxiliar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        
+
         return fechaRetorno.getTime();
 
     }

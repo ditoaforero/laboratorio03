@@ -29,18 +29,41 @@
                 <div align="right" style="padding-right: 10px">
                     <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
                 </div>
-                <p:dataGrid id="availableMuebles" var="venta" value="#{reporteBean.ultimo}" columns="3">
-                    <p:panel id="pnl" header="#{venta.producto.nombre}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-                            <h:outputLabel value="#{venta.cantidad}"  />
-                            <h:outputLabel value="#{venta.ciudad}"  />
-                            <h:outputLabel value="#{venta.fechaVenta}"  />
-                        </h:panelGrid>
-                    </p:panel>
-                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
-                </p:dataGrid>
+
+
+                <h1>Se utilizo DataTable - Basic de PrimeFaces</h1>
+                <p:dataTable var="venta" value="#{reporteBean.ultimo}">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{venta.producto.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Cantidad">
+                        <h:outputText value="#{venta.cantidad}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha">
+                        <h:outputText value="#{venta.fechaVenta}" />
+                    </p:column>
+                    <p:column headerText="Ciudad">
+                        <h:outputText value="#{venta.ciudad}" />
+                    </p:column>
+                </p:dataTable>
             </h:form>
+
         </h:panelGroup>
+
+        <h:outputText value=" - Fecha de venta mayor:" />
+        <h:outputText value="#{reporteBean.fechaMayor}" />
+        <br></br>
+        <h:outputText value=" - Rango inicial del listado:" />
+        <h:outputText value="#{reporteBean.fechaIni}" />
+        <br></br>
+        <h:outputText value=" - Rango final del listado:" />
+        <h:outputText value="#{reporteBean.fechaFin}" />
+        <br></br>
+        <h:outputText value=" - Total de productos vendidos:" />
+        <h:outputText value="#{reporteBean.total}" />
+        <br></br>
 
 
     </ui:define>
