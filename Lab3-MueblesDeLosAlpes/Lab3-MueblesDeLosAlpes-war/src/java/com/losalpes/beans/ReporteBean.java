@@ -32,6 +32,8 @@ public class ReporteBean {
     private Date fechaMayor;
     private Date fechaIni;
     private Date fechaFin;
+    private int total;
+    
 
     /**
      * Creates a new instance of ReporteDeVentas
@@ -73,6 +75,16 @@ public class ReporteBean {
         System.out.println(ventas.darVentas());
 
         return ventas.darVentas();
+    }
+    
+    public int getTotal(){
+
+        List<RegistroVenta> ultimoListado = new ArrayList();
+        ultimoListado = getUltimo();
+        for (int i = 0; i < ultimoListado.size(); i++) {
+            total += ultimoListado.get(i).getCantidad();
+        }
+        return total;
     }
 
     public List<RegistroVenta> getUltimo() {
