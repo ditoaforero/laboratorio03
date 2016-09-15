@@ -16,8 +16,11 @@ import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.TipoMueble;
 import com.losalpes.entities.Usuario;
+import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
@@ -127,11 +130,16 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
             mueble = inventario.get(i);
             Mueble editar=(Mueble) persistencia.findById(Mueble.class, mueble.getReferencia());
             editar.setCantidad(editar.getCantidad()-mueble.getCantidad());
-            RegistroVenta compra=new RegistroVenta(new Date(System.currentTimeMillis()), mueble, mueble.getCantidad(), null, usuario);
+            RegistroVenta compra = new RegistroVenta(new Date(System.currentTimeMillis()), mueble, mueble.getCantidad(), null, usuario);
             usuario.agregarRegistro(compra);
 
             persistencia.update(usuario);
             persistencia.update(editar);
+            try {
+                persistencia.create(compra);
+            } catch (OperacionInvalidaException ex) {
+                Logger.getLogger(ServicioCarritoMock.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         limpiarLista();
     }
